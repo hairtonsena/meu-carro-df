@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
 	//Teste Git
+        //Teste Git2
     public function indexAction() {
         return $this->render('HmCarroBundle:Default:index.html.twig');
     }
