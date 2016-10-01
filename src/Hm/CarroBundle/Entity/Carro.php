@@ -3,6 +3,7 @@
 namespace Hm\CarroBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Carro
@@ -24,9 +25,9 @@ class Carro
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=50)
+     * @ORM\Column(name="marca", type="string", length=50)
      */
-    private $nome;
+    private $marca;
 
     /**
      * @var string
@@ -38,16 +39,30 @@ class Carro
     /**
      * @var string
      *
-     * @ORM\Column(name="marca", type="string", length=50)
+     * @ORM\Column(name="combustivel", type="string", length=50)
      */
-    private $marca;
+    private $combustivel;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ano_fabricacao", type="integer")
+     */
+    private $anoFabricacao;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ano_modelo", type="integer")
+     */
+    private $anoModelo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ano_fabricacao", type="string", length=4)
+     * @ORM\Column(name="cor_predominante", type="string", length=20)
      */
-    private $anoFabricacao;
+    private $corPredominante;
 
     /**
      * @var int
@@ -66,17 +81,28 @@ class Carro
     /**
      * @var bool
      *
-     * @ORM\Column(name="situacao", type="boolean")
-     */
-    private $situacao;
-
-    /**
-     * @var bool
-     *
      * @ORM\Column(name="status", type="boolean")
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\Image()
+     */
+    private $image;
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 
     /**
      * Get id
@@ -86,54 +112,6 @@ class Carro
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nome
-     *
-     * @param string $nome
-     *
-     * @return Carro
-     */
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
-    /**
-     * Get nome
-     *
-     * @return string
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * Set modelo
-     *
-     * @param string $modelo
-     *
-     * @return Carro
-     */
-    public function setModelo($modelo)
-    {
-        $this->modelo = $modelo;
-
-        return $this;
-    }
-
-    /**
-     * Get modelo
-     *
-     * @return string
-     */
-    public function getModelo()
-    {
-        return $this->modelo;
     }
 
     /**
@@ -161,9 +139,57 @@ class Carro
     }
 
     /**
+     * Set modelo
+     *
+     * @param string $modelo
+     *
+     * @return Carro
+     */
+    public function setModelo($modelo)
+    {
+        $this->modelo = $modelo;
+
+        return $this;
+    }
+
+    /**
+     * Get modelo
+     *
+     * @return string
+     */
+    public function getModelo()
+    {
+        return $this->modelo;
+    }
+
+    /**
+     * Set combustivel
+     *
+     * @param string $combustivel
+     *
+     * @return Carro
+     */
+    public function setCombustivel($combustivel)
+    {
+        $this->combustivel = $combustivel;
+
+        return $this;
+    }
+
+    /**
+     * Get combustivel
+     *
+     * @return string
+     */
+    public function getCombustivel()
+    {
+        return $this->combustivel;
+    }
+
+    /**
      * Set anoFabricacao
      *
-     * @param string $anoFabricacao
+     * @param integer $anoFabricacao
      *
      * @return Carro
      */
@@ -177,11 +203,59 @@ class Carro
     /**
      * Get anoFabricacao
      *
-     * @return string
+     * @return int
      */
     public function getAnoFabricacao()
     {
         return $this->anoFabricacao;
+    }
+
+    /**
+     * Set anoModelo
+     *
+     * @param integer $anoModelo
+     *
+     * @return Carro
+     */
+    public function setAnoModelo($anoModelo)
+    {
+        $this->anoModelo = $anoModelo;
+
+        return $this;
+    }
+
+    /**
+     * Get anoModelo
+     *
+     * @return int
+     */
+    public function getAnoModelo()
+    {
+        return $this->anoModelo;
+    }
+
+    /**
+     * Set corPredominante
+     *
+     * @param string $corPredominante
+     *
+     * @return Carro
+     */
+    public function setCorPredominante($corPredominante)
+    {
+        $this->corPredominante = $corPredominante;
+
+        return $this;
+    }
+
+    /**
+     * Get corPredominante
+     *
+     * @return string
+     */
+    public function getCorPredominante()
+    {
+        return $this->corPredominante;
     }
 
     /**
@@ -194,7 +268,6 @@ class Carro
     public function setEstoque($estoque)
     {
         $this->estoque = $estoque;
-
         return $this;
     }
 
@@ -218,7 +291,6 @@ class Carro
     public function setFoto($foto)
     {
         $this->foto = $foto;
-
         return $this;
     }
 
@@ -233,30 +305,6 @@ class Carro
     }
 
     /**
-     * Set situacao
-     *
-     * @param boolean $situacao
-     *
-     * @return Carro
-     */
-    public function setSituacao($situacao)
-    {
-        $this->situacao = $situacao;
-
-        return $this;
-    }
-
-    /**
-     * Get situacao
-     *
-     * @return bool
-     */
-    public function getSituacao()
-    {
-        return $this->situacao;
-    }
-
-    /**
      * Set status
      *
      * @param boolean $status
@@ -266,7 +314,6 @@ class Carro
     public function setStatus($status)
     {
         $this->status = $status;
-
         return $this;
     }
 

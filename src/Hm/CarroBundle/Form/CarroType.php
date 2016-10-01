@@ -5,7 +5,6 @@ namespace Hm\CarroBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CarroType extends AbstractType
 {
@@ -16,14 +15,16 @@ class CarroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nome')
-            ->add('modelo')
             ->add('marca')
+            ->add('modelo')
+            ->add('combustivel')
             ->add('anoFabricacao')
+            ->add('anoModelo')
+            ->add('corPredominante')
             ->add('estoque')
             ->add('foto')
-            ->add('situacao')
             ->add('status')
+            ->add('image')
         ;
     }
     
@@ -35,12 +36,5 @@ class CarroType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Hm\CarroBundle\Entity\Carro'
         ));
-    }
-    
-    /**
-     * @return string
-     */
-    public function getName(){
-        return 'carro';
     }
 }
