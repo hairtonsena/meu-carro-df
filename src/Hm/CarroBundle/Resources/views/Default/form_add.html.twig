@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {{parent()}}
+    
+    {{ form_start(form)}}
+    
+    {{ form_widget(form)}}
+    
+    <input type="submit" value="Salvar" class="btn btn-default pull-left" />
+    
+    {{ form_end(form)}}
+
+{% endblock %}

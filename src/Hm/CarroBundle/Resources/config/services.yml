@@ -1,0 +1,4 @@
+services:
+#    hm_carro.example:
+#        class: Hm\CarroBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
