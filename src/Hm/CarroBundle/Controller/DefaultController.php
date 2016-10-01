@@ -8,7 +8,7 @@ use Hm\CarroBundle\Form\CarroType;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
-
+	//Teste Git
     public function indexAction() {
         return $this->render('HmCarroBundle:Default:index.html.twig');
     }
