@@ -7,21 +7,24 @@ use Hm\CarroBundle\Entity\Carro;
 use Hm\CarroBundle\Form\CarroType;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $em = $this->getDoctrine()->getManager();
 
         $carros = $em->getRepository("HmCarroBundle:Carro")->findAll();
 
 
-
         return $this->render('HmCarroBundle:Default:index.html.twig', array("carros" => $carros)
         );
     }
 
+
     public function addAction(Request $request) {
+
 
         $carro = new Carro();
         $form = $this->createCreateForm($carro);
@@ -43,12 +46,15 @@ class DefaultController extends Controller {
         return $this->render('HmCarroBundle:Default:form_add.html.twig', array('form' => $form->createView()));
     }
 
-    private function createCreateForm(Carro $carro) {
-        $form = $this->createForm(CarroType::class, $carro, array('action' => $this->generateUrl('hm_carro_add'), 'method' => "POST"));
+
+    private function createCreateForm(Carro $carro)
+    {
+        $form = $this->createForm(CarroType::class, $carro, array('action' => $this->generateUrl('hm_carro_salvar'), 'method' => "POST"));
         return $form;
     }
 
-    public function salvarAction(Request $request) {
+    public function salvarAction(Request $request)
+    {
 
         $carro = new Carro();
 
@@ -64,7 +70,9 @@ class DefaultController extends Controller {
         return $this->redirectToRoute('hm_carro');
     }
 
+
     public function editarAction(Request $request, $id) {
+
 
         $em = $this->getDoctrine()->getManager();
         $carro = $em->getRepository("HmCarroBundle:Carro")->find($id);
@@ -86,7 +94,8 @@ class DefaultController extends Controller {
         return $this->render('HmCarroBundle:Default:form_edit.html.twig', array('form' => $form->createView()));
     }
 
-    private function createFormEdit(Carro $carro) {
+    private function createFormEdit(Carro $carro)
+    {
         $form = $this->createForm(CarroType::class, $carro, array(
             'action' => $this->generateUrl('hm_carro_editar', array('id' => $carro->getId())),
             'method' => 'PUT',
@@ -95,19 +104,42 @@ class DefaultController extends Controller {
         return $form;
     }
 
-//    public function salvarUpAction(Request $request, $id) {
-//
-//        $em = $this->getDoctrine()->getManager();
-//        $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
-//
-//        $form = $this->createFormEdit($carro);
-//
-//        $form->handleRequest($request);
-//
-//
-//        $em->flush();
-//
-//        return $this->redirectToRoute('homepage');
-//    }
+
+    public function salvarUpAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
+
+        // $carro = new Carro();
+
+
+        $form = $this->createFormEdit($carro);
+
+        $form->handleRequest($request);
+
+        // $carro = $form->getData();
+
+
+        // $em->persist($carro);
+        $em->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
+
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
+
+        if (!$carro) {
+            throw $this->createNotFoundException("Objeto carro não encontrado.");
+        }
+
+        $em->remove($carro);
+        $em->flush();
+
+        return $this->redirectToRoute('hm_carro');
+    }
 
 }
