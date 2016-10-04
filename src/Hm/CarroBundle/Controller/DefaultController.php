@@ -21,16 +21,30 @@ class DefaultController extends Controller {
         );
     }
 
-    public function addAction() {
+    public function addAction(Request $request) {
 
         $carro = new Carro();
         $form = $this->createCreateForm($carro);
 
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
+        
+        $carro = $form->getData();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($carro);
+        $em->flush();
+        return $this->redirectToRoute('hm_carro');
+        
+        }
+        
+        
         return $this->render('HmCarroBundle:Default:form_add.html.twig', array('form' => $form->createView()));
     }
 
     private function createCreateForm(Carro $carro) {
-        $form = $this->createForm(CarroType::class, $carro, array('action' => $this->generateUrl('hm_carro_salvar'), 'method' => "POST"));
+        $form = $this->createForm(CarroType::class, $carro, array('action' => $this->generateUrl('hm_carro_add'), 'method' => "POST"));
         return $form;
     }
 
@@ -50,18 +64,23 @@ class DefaultController extends Controller {
         return $this->redirectToRoute('hm_carro');
     }
 
-    public function editarAction($id) {
+    public function editarAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getManager();
-
         $carro = $em->getRepository("HmCarroBundle:Carro")->find($id);
 
         if (!$carro) {
             throw $this->createNotFoundException("Objeto carro não encontrado.");
         }
 
-
         $form = $this->createFormEdit($carro);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $em->flush();
+
+            return $this->redirectToRoute('hm_carro');
+        }
 
 
         return $this->render('HmCarroBundle:Default:form_edit.html.twig', array('form' => $form->createView()));
@@ -69,36 +88,26 @@ class DefaultController extends Controller {
 
     private function createFormEdit(Carro $carro) {
         $form = $this->createForm(CarroType::class, $carro, array(
-            'action' => $this->generateUrl('hm_carro_salvar_up', array('id' => $carro->getId())),
+            'action' => $this->generateUrl('hm_carro_editar', array('id' => $carro->getId())),
             'method' => 'PUT',
         ));
 
-       // $form->add('submit', 'submit', array('label' => 'Update'));
         return $form;
     }
 
-    
-    
-    public function salvarUpAction(Request $request,$id) {
-
-        $em = $this->getDoctrine()->getManager();
-        $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
-
-        // $carro = new Carro();
-
-
-        $form = $this->createFormEdit($carro);
-
-        $form->handleRequest($request);
-
-       // $carro = $form->getData();
-
-
-
-       // $em->persist($carro);
-        $em->flush();
-
-        return $this->redirectToRoute('homepage');
-    }
+//    public function salvarUpAction(Request $request, $id) {
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
+//
+//        $form = $this->createFormEdit($carro);
+//
+//        $form->handleRequest($request);
+//
+//
+//        $em->flush();
+//
+//        return $this->redirectToRoute('homepage');
+//    }
 
 }
