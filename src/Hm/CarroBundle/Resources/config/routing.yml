@@ -1,5 +1,5 @@
-hm_carro_homepage:
-    path:     /
+hm_carro:
+    path:     /carro/
     defaults: { _controller: HmCarroBundle:Default:index }
     
 hm_carro_add:
@@ -10,3 +10,12 @@ hm_carro_salvar:
     path:     /carro/salvar
     defaults: { _controller: HmCarroBundle:Default:salvar }
     methods: POST
+
+hm_carro_editar:
+    path:     /carro/editar/{id}
+    defaults: { _controller: HmCarroBundle:Default:editar }
+    
+hm_carro_salvar_up:
+    path:     /carro/{id}/salvar_up
+    defaults: { _controller: HmCarroBundle:Default:salvarUp }
+    requirements: { _method: post|put }
