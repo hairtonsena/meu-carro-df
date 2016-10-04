@@ -71,7 +71,9 @@ class Carro
      */
     private $estoque;
 
-    /**
+
+      /**
+
      * @var bool
      *
      * @ORM\Column(name="status", type="boolean")
@@ -79,7 +81,7 @@ class Carro
     private $status;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
      * @Assert\Image()
      */
