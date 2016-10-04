@@ -6,21 +6,11 @@ hm_carro_add:
     path:     /carro/add
     defaults: { _controller: HmCarroBundle:Default:add }
     
-hm_carro_salvar:
-    path:     /carro/salvar
-    defaults: { _controller: HmCarroBundle:Default:salvar }
-    methods: POST
-
 hm_carro_editar:
     path:     /carro/editar/{id}
     defaults: { _controller: HmCarroBundle:Default:editar }
     requirements: { _method: post|put }
     
-hm_carro_salvar_up:
-    path:     /carro/{id}/salvar_up
-    defaults: { _controller: HmCarroBundle:Default:salvarUp }
-    requirements: { _method: post|put }
-
 hm_carro_delete:
     path:     /carro/delete/{id}
     defaults: { _controller: HmCarroBundle:Default:delete }
