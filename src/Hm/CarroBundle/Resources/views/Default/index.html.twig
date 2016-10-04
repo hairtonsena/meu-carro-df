@@ -39,7 +39,7 @@
                                 <td>{{ carro.corPredominante }}</td>
                                 <td>{{ carro.estoque }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-info">
+                                    <a href="{{ path('hm_carro_visualizar',{id: carro.id})}}" class="btn btn-sm btn-info">
                                         Ver
                                     </a>
                                     <a href="{{ path('hm_carro_editar',{id: carro.id})}}" class="btn btn-sm btn-primary">

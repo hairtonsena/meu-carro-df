@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Meu carro - Visualizar {% endblock%}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <div class="col-md-12">
+            <div class="page-header margin-none" >
+                <div class="col-md-6" style="padding: 0px; margin: 0px">
+                    <h2 class="padding-none">Carro</h2>
+                </div>
+                <div class="col-md-6 text-right" style="padding: 0px; margin: 0px">
+                    <h2><a class="btn btn-info btn-sm" href="{{ path('hm_carro_add') }}">Novo carro</a> 
+
+                        <a href="{{ path('hm_carro_editar',{id: carro.id})}}" class="btn btn-sm btn-primary">
+                            Editar
+                        </a>
+                        <a href="{{ path('hm_carro_delete', {id: carro.id}) }}" class="btn btn-sm btn-danger">
+                            Apagar
+                        </a></h2>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-8">
+                <div class="col-md-12">
+                    <h4> {{ carro.marca }} - {{ carro.modelo }} </h4>
+                </div>
+                <div class="col-md-12">
+                    <img src="#" class="thumbnail" />
+                    <a href="{{ asset('uploads/images_carros/' ~ carro.image) }} "> Imagem </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Combustivel:</label><br>
+                    <span class="" style=" font-size: 24px">{{ carro.combustivel }}</span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Ano Fabricacão:</label><br>
+                    <span class="" style=" font-size: 24px">{{ carro.anoFabricacao }}</span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Modelo:</label><br>
+                    <span class="" style=" font-size: 24px">{{ carro.anoModelo}}</span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Cor:</label><br>
+                    <span class="" style=" font-size: 24px">{{ carro.corPredominante}}</span>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Estoque:</label><br>
+                    <span class="" style=" font-size: 24px">{{ carro.estoque }}</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

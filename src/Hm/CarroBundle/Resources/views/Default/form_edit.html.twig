@@ -48,22 +48,22 @@
                     {{ form_widget(form.estoque, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira a quantidade deste carro no estoque'} }) }}
                     <span class="text-danger">{{ form_errors(form.estoque) }}</span>
                 </div>
-                <div class="form-group">
-                    {{ form_label(form.image, 'Imagem') }}
-                    {{ form_widget(form.image, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira uma imagem do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.image) }}</span>
-                </div>
+
                 <div class="form-group">
                     {{ form_label(form.status, 'Status') }}
                     {{ form_widget(form.status)}}
                     <span class="text-danger">{{ form_errors(form.status) }}</span>
                 </div>
+
+                <div class="form-group">
+                    <a class="btn btn-default" href="{{ path('hm_carro_up',{id:carro.id})}}">Inserir imagem</a>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group text-right">
-                    
+
                     <a class="btn btn-default" href="{{ path('hm_carro') }}">Cancelar</a>
-                    
+
                     <input type="submit" value="Salvar" class="btn btn-primary" />
                 </div>
             </div>

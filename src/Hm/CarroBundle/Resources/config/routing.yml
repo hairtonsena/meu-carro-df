@@ -15,3 +15,12 @@ hm_carro_delete:
     path:     /carro/delete/{id}
     defaults: { _controller: HmCarroBundle:Default:delete }
     requirements: {_method: DELETE}
+    
+hm_carro_visualizar:
+    path:     /carro/visualizar/{id}
+    defaults: { _controller: HmCarroBundle:Default:visualizar }
+    
+hm_carro_up:
+    path:     /carro/up/{id}
+    defaults: { _controller: HmCarroBundle:Default:upload }
+    requirements: { _method: post|put }

@@ -5,6 +5,7 @@ namespace Hm\CarroBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CarroType extends AbstractType
 {
@@ -23,7 +24,7 @@ class CarroType extends AbstractType
             ->add('corPredominante')
             ->add('estoque')
             ->add('status')
-            ->add('image')
+            ->add('image', FileType::class)
         ;
     }
     

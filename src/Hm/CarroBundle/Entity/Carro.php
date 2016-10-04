@@ -83,7 +83,7 @@ class Carro
     /**
      * @ORM\Column(type="string", nullable=true)
      *
-     * @Assert\Image()
+     * @Assert\File(mimeTypes={"application/pdf"})
      */
     private $image;
 
