@@ -14,6 +14,7 @@ hm_carro_salvar:
 hm_carro_editar:
     path:     /carro/editar/{id}
     defaults: { _controller: HmCarroBundle:Default:editar }
+    requirements: { _method: post|put }
     
 hm_carro_salvar_up:
     path:     /carro/{id}/salvar_up
