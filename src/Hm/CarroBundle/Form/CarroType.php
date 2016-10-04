@@ -22,7 +22,6 @@ class CarroType extends AbstractType
             ->add('anoModelo')
             ->add('corPredominante')
             ->add('estoque')
-            ->add('foto')
             ->add('status')
             ->add('image')
         ;

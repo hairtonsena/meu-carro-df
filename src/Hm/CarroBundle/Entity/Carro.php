@@ -72,13 +72,6 @@ class Carro
     private $estoque;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="foto", type="string", length=100)
-     */
-    private $foto;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="status", type="boolean")
@@ -279,29 +272,6 @@ class Carro
     public function getEstoque()
     {
         return $this->estoque;
-    }
-
-    /**
-     * Set foto
-     *
-     * @param string $foto
-     *
-     * @return Carro
-     */
-    public function setFoto($foto)
-    {
-        $this->foto = $foto;
-        return $this;
-    }
-
-    /**
-     * Get foto
-     *
-     * @return string
-     */
-    public function getFoto()
-    {
-        return $this->foto;
     }
 
     /**
