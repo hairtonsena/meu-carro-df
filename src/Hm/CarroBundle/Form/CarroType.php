@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class CarroType extends AbstractType
 {
@@ -25,6 +26,7 @@ class CarroType extends AbstractType
             ->add('estoque')
             ->add('status')
             ->add('image', FileType::class)
+            ->add('preco', MoneyType::class, array('currency' => 'BRL'))
         ;
     }
     

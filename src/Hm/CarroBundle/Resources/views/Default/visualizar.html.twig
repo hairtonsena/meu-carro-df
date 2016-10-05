@@ -1,19 +1,20 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Meu carro - Visualizar {% endblock%}
+{% block title %} Meu carro - Visualizar {% endblock %}
 
 {% block body %}
     {{ parent() }}
     <div class="container">
         <div class="col-md-12">
-            <div class="page-header margin-none" >
+            <div class="page-header margin-none">
                 <div class="col-md-6" style="padding: 0px; margin: 0px">
-                    <h2 class="padding-none">Carro</h2>
+                    <h2 class="padding-none">{{ carro.marca }} - {{ carro.modelo }} </h2>
+                    <h2><span class="label label-warning">R$ {{ carro.preco }}</span></h2>
                 </div>
                 <div class="col-md-6 text-right" style="padding: 0px; margin: 0px">
-                    <h2><a class="btn btn-info btn-sm" href="{{ path('hm_carro_add') }}">Novo carro</a> 
+                    <h2><a class="btn btn-info btn-sm" href="{{ path('hm_carro_add') }}">Novo carro</a>
 
-                        <a href="{{ path('hm_carro_editar',{id: carro.id})}}" class="btn btn-sm btn-primary">
+                        <a href="{{ path('hm_carro_editar',{id: carro.id}) }}" class="btn btn-sm btn-primary">
                             Editar
                         </a>
                         <a href="{{ path('hm_carro_delete', {id: carro.id}) }}" class="btn btn-sm btn-danger">
@@ -27,11 +28,10 @@
         <div class="col-md-12">
             <div class="col-md-8">
                 <div class="col-md-12">
-                    <h4> {{ carro.marca }} - {{ carro.modelo }} </h4>
+
                 </div>
                 <div class="col-md-12">
-                    <img src="#" class="thumbnail" />
-                    <a href="{{ asset('uploads/images_carros/' ~ carro.image) }} "> Imagem </a>
+                    <img src="{{ asset('uploads/images_carros/' ~ carro.image) }}" class="img-responsive" alt="Carro" height="600" width="600"/>
                 </div>
             </div>
             <div class="col-md-4">
@@ -47,12 +47,12 @@
                 <hr>
                 <div class="form-group">
                     <label>Modelo:</label><br>
-                    <span class="" style=" font-size: 24px">{{ carro.anoModelo}}</span>
+                    <span class="" style=" font-size: 24px">{{ carro.anoModelo }}</span>
                 </div>
                 <hr>
                 <div class="form-group">
                     <label>Cor:</label><br>
-                    <span class="" style=" font-size: 24px">{{ carro.corPredominante}}</span>
+                    <span class="" style=" font-size: 24px">{{ carro.corPredominante }}</span>
                 </div>
                 <hr>
                 <div class="form-group">

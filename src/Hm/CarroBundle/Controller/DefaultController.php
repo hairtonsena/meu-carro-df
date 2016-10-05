@@ -2,15 +2,17 @@
 
 namespace Hm\CarroBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hm\CarroBundle\Entity\Carro;
 use Hm\CarroBundle\Form\CarroType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
-    public function indexAction() {
+    public function indexAction()
+    {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -20,23 +22,23 @@ class DefaultController extends Controller {
         );
     }
 
-    public function addAction(Request $request) {
+    public function addAction(Request $request)
+    {
         $carro = new Carro();
         $form = $this->createCreateForm($carro);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $carro->getImage();
-            
+
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            
+
             $file->move(
-                    $this->getParameter('image_directory'),
-                    $fileName
-                    );
-            
+                $this->getParameter('image_directory'),
+                $fileName
+            );
+
             $carro->setImage($fileName);
 
             $carro = $form->getData();
@@ -50,15 +52,21 @@ class DefaultController extends Controller {
         return $this->render('HmCarroBundle:Default:form_add.html.twig', array('form' => $form->createView()));
     }
 
-    private function createCreateForm(Carro $carro) {
+    private function createCreateForm(Carro $carro)
+    {
         $form = $this->createForm(CarroType::class, $carro, array('action' => $this->generateUrl('hm_carro_add'), 'method' => "POST"));
         return $form;
     }
 
-    public function editarAction(Request $request, $id) {
+    public function editarAction(Request $request, $id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $carro = $em->getRepository("HmCarroBundle:Carro")->find($id);
+
+        $carro->setImage(
+            new File($this->getParameter('image_directory').'/'.$carro->getImage())
+        );
 
         if (!$carro) {
             throw $this->createNotFoundException("Objeto carro não encontrado.");
@@ -68,16 +76,29 @@ class DefaultController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $em->flush();
+            $file = $carro->getImage();
 
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file->move(
+                $this->getParameter('image_directory'),
+                $fileName
+            );
+
+            $carro->setImage($fileName);
+
+            $carro = $form->getData();
+
+            $em->flush();
             return $this->redirectToRoute('hm_carro');
         }
 
 
-        return $this->render('HmCarroBundle:Default:form_edit.html.twig', array('form' => $form->createView(),'carro'=>$carro));
+        return $this->render('HmCarroBundle:Default:form_edit.html.twig', array('form' => $form->createView(), 'carro' => $carro));
     }
 
-    private function createFormEdit(Carro $carro) {
+    private function createFormEdit(Carro $carro)
+    {
         $form = $this->createForm(CarroType::class, $carro, array(
             'action' => $this->generateUrl('hm_carro_editar', array('id' => $carro->getId())),
             'method' => 'PUT',
@@ -86,7 +107,8 @@ class DefaultController extends Controller {
         return $form;
     }
 
-    public function deleteAction($id) {
+    public function deleteAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
 
@@ -100,7 +122,8 @@ class DefaultController extends Controller {
         return $this->redirectToRoute('hm_carro');
     }
 
-    public function visualizarAction($id) {
+    public function visualizarAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $carro = $em->getRepository('HmCarroBundle:Carro')->find($id);
 
@@ -111,7 +134,8 @@ class DefaultController extends Controller {
         return $this->render('HmCarroBundle:Default:visualizar.html.twig', array('carro' => $carro));
     }
 
-    public function uploadAction(Request $request, $id) {
+    public function uploadAction(Request $request, $id)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $carro = $em->getRepository("HmCarroBundle:Carro")->find($id);
@@ -121,25 +145,23 @@ class DefaultController extends Controller {
         }
 
         $form = $this->createFormEdit($carro);
-        
-        
+
+
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form -> isValid()) {
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+        if ($form->isSubmitted() && $form->isValid()) {
             $file = $carro->getImage();
-            
+
             $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            
+
             $file->move(
-                    $this->getParameter('image_directory'),
-                    $fileName
-                    );
-            
+                $this->getParameter('image_directory'),
+                $fileName
+            );
+
             $carro->setImage($fileName);
-            $carro = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            
+
             $em->flush();
 
             return $this->redirectToRoute('hm_carro');

@@ -83,7 +83,10 @@ class Carro
     /**
      * @ORM\Column(type="string", nullable=true)
      *
-     * @Assert\File(mimeTypes={"application/pdf"})
+     * @Assert\File(maxSize = "5M",
+     *     mimeTypes = {"image/jpeg", "image/gif", "image/png", "image/tiff"},
+     *     maxSizeMessage = "The maxmimum allowed file size is 5MB.",
+     *     mimeTypesMessage = "Only the filetypes image are allowed.")
      */
     private $image;
 
@@ -98,6 +101,30 @@ class Carro
 
         return $this;
     }
+
+    /**
+     * @return float
+     */
+    public function getPreco()
+    {
+        return $this->preco;
+    }
+
+    /**
+     * @param float $preco
+     */
+    public function setPreco($preco)
+    {
+        $this->preco = $preco;
+    }
+
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="preco", type="decimal")
+     */
+    private $preco;
 
     /**
      * Get id

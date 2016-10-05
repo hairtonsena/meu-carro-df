@@ -4,69 +4,74 @@
     {{ parent() }}
     <div class="main container">
 
-        <div class="col-md-12">
-            <div class="page-header">
-                <h2>Cadastro de Carros</h2>
-            </div>
-            {{ form_start(form) }}
+    <div class="col-md-12">
+    <div class="page-header">
+        <h2>Cadastro de Carros</h2>
+    </div>
+    {{ form_start(form) }}
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.marca, 'Marca') }}
-                    {{ form_widget(form.marca, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inclua a marca do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.marca) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.modelo, 'Modelo') }}
-                    {{ form_widget(form.modelo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o modelo do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.modelo) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.combustivel, 'Combustível') }}
-                    {{ form_widget(form.combustivel, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o tipo de combustível do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.combustivel) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.anoFabricacao, 'Ano de Fabricação') }}
-                    {{ form_widget(form.anoFabricacao, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o ano de fabricação do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.anoFabricacao) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.anoModelo, 'Ano do Modelo') }}
-                    {{ form_widget(form.anoModelo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o ano de modelo do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.anoModelo) }}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.corPredominante, 'Cor predominante') }}
-                    {{ form_widget(form.corPredominante, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira a cor predominante do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.corPredominante) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.estoque, 'Estoque') }}
-                    {{ form_widget(form.estoque, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira a quantidade deste carro no estoque'} }) }}
-                    <span class="text-danger">{{ form_errors(form.estoque) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.image, 'Imagem') }}
-                    {{ form_widget(form.image, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira uma imagem do carro'} }) }}
-                    <span class="text-danger">{{ form_errors(form.image) }}</span>
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.status, 'Status') }}
-                    {{ form_widget(form.status)}}
-                    <span class="text-danger">{{ form_errors(form.status) }}</span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group text-right">
-                    
-                    <a class="btn btn-default" href="{{ path('hm_carro') }}">Cancelar</a>
-                    
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
-                </div>
-            </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.marca, 'Marca') }}
+            {{ form_widget(form.marca, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Inclua a marca do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.marca) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.modelo, 'Modelo') }}
+            {{ form_widget(form.modelo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o modelo do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.modelo) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.combustivel, 'Combustível') }}
+            {{ form_widget(form.combustivel, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o tipo de combustível do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.combustivel) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.anoFabricacao, 'Ano de Fabricação') }}
+            {{ form_widget(form.anoFabricacao, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o ano de fabricação do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.anoFabricacao) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.anoModelo, 'Ano do Modelo') }}
+            {{ form_widget(form.anoModelo, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira o ano de modelo do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.anoModelo) }}</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(form.corPredominante, 'Cor predominante') }}
+            {{ form_widget(form.corPredominante, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira a cor predominante do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.corPredominante) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.estoque, 'Estoque') }}
+            {{ form_widget(form.estoque, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Insira a quantidade deste carro no estoque'} }) }}
+            <span class="text-danger">{{ form_errors(form.estoque) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.preco, 'Preço') }}
+            {{ form_widget(form.preco, { 'attr' : {'class' : 'form-control', 'placeholder': 'Insira o preço do carro'} }) }}
+            <span class="text-danger">{{ form_errors(form.preco) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.image, 'Imagem') }}
+            {{ form_widget(form.image, { 'attr' : {'class' : 'form-control', 'accept': "image/*"} }) }}
+            <span class="text-danger">{{ form_errors(form.image) }}</span>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.status, 'Status') }}
+            {{ form_widget(form.status) }}
+            <span class="text-danger">{{ form_errors(form.status) }}</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group text-right">
+
+            <a class="btn btn-default" href="{{ path('hm_carro') }}">Cancelar</a>
+
+            <input type="submit" value="Salvar" class="btn btn-primary"/>
+        </div>
+    </div>
 
 
-        {% endblock %}
+{% endblock %}
