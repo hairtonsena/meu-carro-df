@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+
+
+    <link rel="stylesheet" href="{{ asset('public/css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
+</head>
+
+<body>
+
+<div class="login">
+    {#<h1>Login</h1>#}
+    {#<form method="post">#}
+    {#<input type="text" name="u" placeholder="Username" required="required" />#}
+    {#<input type="password" name="p" placeholder="Password" required="required" />#}
+    {#<button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>#}
+    {#</form>#}
+    <h1>Login</h1>
+
+    {% block fos_user_content %}{% endblock %}
+</div>
+
+<script src="{{ asset('public/js/index.js') }}"></script>
+
+
+</body>
+</html>

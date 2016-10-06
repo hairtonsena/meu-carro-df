@@ -7,6 +7,7 @@ use Hm\CarroBundle\Form\CarroType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Doctrine\UserManager;
 
 class DefaultController extends Controller
 {
