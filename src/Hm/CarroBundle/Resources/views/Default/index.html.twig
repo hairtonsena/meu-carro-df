@@ -4,6 +4,12 @@
     {{ parent() }}
     <div class="container">
         <div class="col-md-12">
+            {% for flash_message in app.session.flashBag.get('sucess') %}
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <div class="page-header margin-none" >
                 <div class="col-md-6" style="padding: 0px; margin: 0px">
                     <h2 class="padding-none">Carros</h2>

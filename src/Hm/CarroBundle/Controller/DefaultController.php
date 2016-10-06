@@ -47,7 +47,10 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($carro);
             $em->flush();
+
+            $this->addFlash('sucess','Carro cadastrado com sucesso!');
             return $this->redirectToRoute('hm_carro');
+
         }
 
         return $this->render('HmCarroBundle:Default:form_add.html.twig', array('form' => $form->createView()));
